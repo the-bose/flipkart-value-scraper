@@ -4,11 +4,11 @@ from scraper import scrape
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', host="ibmappendly.herokuapp.com")
 def student():
    return render_template('index.html')
 
-@app.route('/result', methods = ['POST', 'GET'])
+@app.route('/result', methods = ['POST', 'GET'], host="ibmappendly.herokuapp.com")
 def result():
    if request.method == 'POST':
       result = request.form['Name']
