@@ -1,4 +1,3 @@
-from textblob import TextBlob
 from flask import Flask, render_template, request
 from scraper import scrape
 
