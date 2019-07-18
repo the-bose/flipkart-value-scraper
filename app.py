@@ -26,12 +26,19 @@ def apiInit():
 
 #CONVERSION OF CURRENCIES
 def convertCurr(amt):
+    global data
+    
+    try:
         #CONVERSION
         amt = float(amt)
         usd = round(amt * data['rates']['USD'], 2)
         jpy = round(amt * data['rates']['JPY'], 2)
         eur = round(amt * data['rates']['EUR'], 2)
-
+    except:
+        #API ERROR
+        print(data)
+        usd = jpy = eur = ''
+    finally:
         return(usd, jpy, eur)
 
 @app.route('/', host="ibmappendly.herokuapp.com")
