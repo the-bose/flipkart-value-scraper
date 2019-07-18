@@ -5,8 +5,13 @@ import json
 
 app = Flask(__name__)
 
-#API CALL AND CONVERSION
-def apiInit(amt):
+#STORE CONVERSION
+data = {}
+
+#INITIAL API CALL AND STORE CONVERSION
+def apiInit():
+    global data
+
     #API SETUP
     url = "https://fixer-fixer-currency-v1.p.rapidapi.com/latest"
     headers = {
@@ -19,13 +24,15 @@ def apiInit(amt):
     resp = requests.get(finalURL, headers = headers)
     data = resp.json()
 
-    #CONVERSION
-    amt = float(amt)
-    usd = round(amt * data['rates']['USD'], 2)
-    jpy = round(amt * data['rates']['JPY'], 2)
-    eur = round(amt * data['rates']['EUR'], 2)
+#CONVERSION OF CURRENCIES
+def convertCurr(amt):
+        #CONVERSION
+        amt = float(amt)
+        usd = round(amt * data['rates']['USD'], 2)
+        jpy = round(amt * data['rates']['JPY'], 2)
+        eur = round(amt * data['rates']['EUR'], 2)
 
-    return(usd, jpy, eur)
+        return(usd, jpy, eur)
 
 @app.route('/', host="ibmappendly.herokuapp.com")
 def student():
@@ -43,9 +50,10 @@ def result():
       CPL = int(price)/int(warranty)
       CPL = int(CPL)
       #CURRENCY CONVERSION
-      p = apiInit(price)
-      c = apiInit(CPL)
+      p = convertCurr(price)
+      c = convertCurr(CPL)
       return render_template("index.html", price = price, rating = rating, value = value, warranty = warranty, CPL = CPL, pusd = p[0], pyen = p[1], peur = p[2], cusd = c[0], cyen = c[1], ceur = c[2])
 
 if __name__ == '__main__':
-   app.run(debug=True)
+    apiInit()
+    app.run(debug=True)

@@ -18,7 +18,10 @@ def scrape(url):
     #VALUE EXTRACTION
     price = re.sub('[^0-9]', '', priceClass.contents[0])
     rating = re.sub('[^0-9\.]', '', ratingClass.contents[0])
-    vfm = re.sub('[^0-9\.]', '', vfmClass.contents[0])
+    if(vfmClass is not None):
+        vfm = re.sub('[^0-9\.]', '', vfmClass.contents[0])
+    else:
+        vfm = ''
     war = warrantyClass.contents[0].split()
     for i in range(len(war)):
         if war[i].isnumeric():
