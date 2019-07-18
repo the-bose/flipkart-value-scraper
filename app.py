@@ -16,7 +16,9 @@ def result():
       rating = result[1]
       value = result[2]
       warranty = result[3]
-      return render_template("index.html", price = price, rating = rating, value = value, warranty = warranty)
+      CPL = int(price)/int(warranty)
+      CPL = int(CPL)
+      return render_template("index.html", price = price, rating = rating, value = value, warranty = warranty, CPL = CPL)
 
 if __name__ == '__main__':
    app.run(debug=True)
