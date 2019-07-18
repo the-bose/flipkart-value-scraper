@@ -28,7 +28,7 @@ def scrape(url):
                 warranty = int(war[i])
             break
 
-    #OUTPUT: PRICE, TOTAL RATING, VALUE FOR MONEY RATING, WARRANTY IN YEARS
+    #OUTPUT: PRICE, TOTAL RATING, VALUE FOR MONEY RATING, WARRANTY IN MONTHS
     return (price, rating, vfm, warranty)
 
 if __name__ == '__main__':
