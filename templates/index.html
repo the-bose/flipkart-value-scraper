@@ -54,7 +54,10 @@
 				<div>
 					{% if title is defined %}
 						<p>
-							<b>Title: {{ title }}</b><br>
+							<br><center><img src="{{ imgURL }}" alt="{{ title }}"></center><br>
+						</p>
+						<p>
+							<br><b>Title: {{ title }}</b>
 							<br><b>Price: ₹{{ price }} | ${{ pusd }} | ¥{{ pyen }} | €{{ peur }}</b><br>
 							<b>Rating ⭐: {{ rating }}</b><br>
 							<b>Value for Money 💰: {{ value }}</b><br>
