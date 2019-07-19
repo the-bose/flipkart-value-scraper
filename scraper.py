@@ -10,13 +10,15 @@ def scrape(url):
     content = BeautifulSoup(r.text, 'html.parser')
 
     #CLASS EXTRACTION
+    titleClass = content.find('span', {'class': '_35KyD6'})
     priceClass = content.find(class_ = '_1vC4OE _3qQ9m1')
     ratingClass = content.find(class_ = '_1i0wk8')
     vfmClass = content.find(class_ = 'PRNS4f')
     warrantyClass = content.find(class_ = '_3h7IGd')
 
     #VALUE EXTRACTION
-    price = re.sub('[^0-9]', '', priceClass.contents[0])
+    title = titleClass.contents[0]
+    price = re.sub('[^0-9\.]', '', priceClass.contents[0])
     rating = re.sub('[^0-9\.]', '', ratingClass.contents[0])
     if(vfmClass is not None):
         vfm = re.sub('[^0-9\.]', '', vfmClass.contents[0])
@@ -31,12 +33,12 @@ def scrape(url):
                 warranty = int(war[i])
             break
 
-    #OUTPUT: PRICE, TOTAL RATING, VALUE FOR MONEY RATING, WARRANTY IN MONTHS
-    return (price, rating, vfm, warranty)
+    #OUTPUT: TITLE OF PRODUCT, PRICE, TOTAL RATING, VALUE FOR MONEY RATING, WARRANTY IN MONTHS
+    return (title, price, rating, vfm, warranty)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description = 'Flipkart Value Scraper')
     parser.add_argument('url', type = str, help = 'Flipkart product link')
     args = parser.parse_args()
 
-    scrape(args.url.split('?')[0])
+    print(scrape(args.url.split('?')[0]))

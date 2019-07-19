@@ -52,13 +52,16 @@
 					</div>
 				</div>
 				<div>
-					<p>
-						<br><b>Price: ₹{{ price }} | ${{ pusd }} | ¥{{ pyen }} | €{{ peur }}</b><br>
-						<b>Rating ⭐: {{ rating }}</b><br>
-						<b>Value for Money 💰: {{ value }}</b><br>
-						<b>Warranty: {{ warranty }} months</b><br>
-						<b>Cost per lifetime: <font color="#00c643">₹{{ CPL }} | ${{ cusd }} | ¥{{ cyen }} | €{{ ceur }}</font></b>
-					</p>
+					{% if title is defined %}
+						<p>
+							<b>Title: {{ title }}</b><br>
+							<br><b>Price: ₹{{ price }} | ${{ pusd }} | ¥{{ pyen }} | €{{ peur }}</b><br>
+							<b>Rating ⭐: {{ rating }}</b><br>
+							<b>Value for Money 💰: {{ value }}</b><br>
+							<b>Warranty: {{ warranty }} months</b><br>
+							<b>Cost per lifetime: <font color="#00c643">₹{{ CPL }} | ${{ cusd }} | ¥{{ cyen }} | €{{ ceur }}</font></b>
+						</p>
+					{% endif %}
 				</div>
 			</form>
 		</div>

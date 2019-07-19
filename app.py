@@ -51,16 +51,17 @@ def result():
       apiInit()
       result = request.form['Name']
       result = scrape(result)
-      price = result[0]
-      rating = result[1]
-      value = result[2]
-      warranty = result[3]
+      title = result[0]
+      price = result[1]
+      rating = result[2]
+      value = result[3]
+      warranty = result[4]
       CPL = int(price)/int(warranty)
       CPL = int(CPL)
       #CURRENCY CONVERSION
       p = convertCurr(price)
       c = convertCurr(CPL)
-      return render_template("index.html", price = price, rating = rating, value = value, warranty = warranty, CPL = CPL, pusd = p[0], pyen = p[1], peur = p[2], cusd = c[0], cyen = c[1], ceur = c[2])
+      return render_template("index.html", title = title, price = price, rating = rating, value = value, warranty = warranty, CPL = CPL, pusd = p[0], pyen = p[1], peur = p[2], cusd = c[0], cyen = c[1], ceur = c[2])
 
 if __name__ == '__main__':
     app.run(debug=True)
