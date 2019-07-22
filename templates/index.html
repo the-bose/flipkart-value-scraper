@@ -24,6 +24,12 @@
 	<link rel="stylesheet" type="text/css" href="/static/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
 <!--===============================================================================================-->
+	<style type="text/css">
+		.warn{
+			color: #FF0000;
+		}
+	</style>
+<!--===============================================================================================-->
 </head>
 <body>
 
@@ -52,6 +58,9 @@
 					</div>
 				</div>
 				<div>
+					{% if warn is defined %}
+						<br><center><p class="warn">{{ warn }}</p></center>
+					{% endif %}
 					{% if title is defined %}
 						<p>
 							<br><center><img src="{{ imgURL }}" alt="{{ title }}"></center><br>

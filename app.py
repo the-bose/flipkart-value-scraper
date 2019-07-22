@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from scraper import scrape
-from urllib.parse import quote_plus
+from urllib.parse import quote_plus, urlparse
 import requests
 import json
 
@@ -75,14 +75,26 @@ def result():
       #FORM RESULT
       result = request.form['Name']
 
+      #VALIDATE URL
+      parsedURL = urlparse(result)
+      print(parsedURL.netloc)
+      if(parsedURL.netloc != 'www.flipkart.com'):
+          return render_template('index.html', warn = 'Enter a valid Flipkart URL')
+
       #SCRAPE RESULTS
       result = scrape(result)
 
-      title = result[0]
-      price = result[1]
-      rating = result[2]
-      value = result[3]
-      warranty = result[4]
+      #CHECK IF STATUS RETURNS SUCCESS OR PARTIAL SUCCESS
+      statusCode = result[0]
+      if(statusCode == 201):
+          return render_template('index.html', warn = 'Enter a valid Flipkart Product URL')
+
+      #VALUES FROM SCRAPE RESULT
+      title = result[1]
+      price = result[2]
+      rating = result[3]
+      value = result[4]
+      warranty = result[5]
       CPL = int(price)/int(warranty)
       CPL = int(CPL)
 
