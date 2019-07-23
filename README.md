@@ -1,5 +1,4 @@
 # Flipkart Product Value Scraper
-## Description
 An app that scrapes the following flipkart product values:
 * Product title
 * Product price
