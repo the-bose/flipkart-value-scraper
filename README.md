@@ -1,8 +1,14 @@
-# flipkart-value-scraper
+# Flipkart Product Value Scraper
 ## Description
-Scrapes flipkart values.
+An app that scrapes the following flipkart product values:
+* Product title
+* Product price
+* Total rating
+* 'Value for money' rating
+* Warranty of product (in months)
+
 ## Installation
-Clone the repo
+Clone the repository
 
 	git clone https://github.com/the-bose/flipkart-value-scraper.git
 	cd flipkart-value-scraper
